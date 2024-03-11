@@ -1,13 +1,40 @@
-function FibonacciSequence(n) {
-    let fibonacciArray = [0, 1];
-  
-    for (let i = 2; i < n; i++) {
-      fibonacciArray[i] = fibonacciArray[i - 1] + fibonacciArray[i - 2];
-    }
-  
-    return fibonacciArray.join(' ');
+const count = 10;
+const number = findNumbers(count);
+console.log(number.join(' '));
+
+function isFibonacci(num) {
+  // Check if a number is in the Fibonacci sequence
+  let a = 0, b = 1;
+  while (b < num) {
+      let temp = b;
+      b = a + b;
+      a = temp;
+  }
+  return b === num;
 }
 
-const n = 15;
-const fibonacciSequence = FibonacciSequence(n);
-console.log(`Fibonacci sequence ${fibonacciSequence}`);
+function isPrime(num) {
+  // Check if a number is prime
+  if (num <= 1) return false;
+  for (let i = 2; i <= Math.sqrt(num); i++) {
+      if (num % i === 0) {
+          return false;
+      }
+  }
+  return true;
+}
+
+function findNumbers(count) {
+  // Find numbers
+  let result = [];
+  let num = 2;
+
+  while (result.length < count) {
+      if (!isFibonacci(num) && !isPrime(num)) {
+          result.push(num);
+      }
+      num++;
+  }
+
+  return result;
+}
